@@ -1,0 +1,75 @@
+12
+person		5000	100	0	5
+address		1500	250	5	5
+family		1000	40	10	5
+emp		2000	100	15      5
+dept		30	500	20      4
+items		500	200	23	3
+manuf		700	50	27	4
+parts		7000	80	31	2
+comp		10000	30	33	4		
+supplier	700	150	37	4
+supplies	10000	30	41	4
+job		70	500	45	3
+
+48
+ssno	integer	2 btree 1 5000 0000 9999
+lic_no  integer 2 btree 0 5000 0000 9999
+name    string -1 btree 0 5000 
+age     integer 2 noindex
+sex     integer 1 noindex
+
+st_no   integer 2 noindex
+st_name string -1 btree 1 150  
+apt_no  integer 2 noindex
+city    string -1 noindex
+zip     integer 2 noindex
+
+lname   string  2 btree 1 500
+father  integer 2 btree 0 1000 0000 9999
+mother  integer 2 noindex
+n_child integer 2 noindex
+addr	integer 2 noindex
+
+
+eno     integer 2 btree 1 2000 0000 9999 
+essno   integer	2 btree 0 2000 0000 9999
+dno     integer 2 noindex
+jno     integer 2 btree 0 70   0000 9999
+comment string -1 noindex
+
+dno	integer 2 btree 1 30   0000 9999
+dname   string -1 btree 0 30
+desc	string -1 noindex
+addr	integer 2 noindex
+
+itemno	integer 2 btree 1 500  0000 9999
+name 	string -1 btree 0 500  
+desc	string -1 noindex
+
+itemno	integer 2 btree 1 500  0000 9999
+dno	integer 2 noindex
+desc	string -1 noindex
+cap	integer 2 noindex
+
+pno	integer 2 btree 1 7000 0000 9999
+name	string -1 btree 0 7000
+
+itemno	integer 2 btree 1 500  0000 9999
+pno	integer 2 btree 0 7000 0000 9999	
+qty	integer 2 noindex
+remrk	string -1 noindex
+
+sno	integer 2 btree 1 700  0000 9999
+sname	string -1 btree 0 700 
+remrk	string -1 noindex
+addr	integer 2 noindex
+
+sno	integer 2 btree 1 700  0000 9999
+pno	integer 2 btree 0 7000 0000 9999
+cost	integer 2 noindex
+remrk	string -1 noindex
+
+jno 	integer 2 btree 1 70   0000 9999
+name	string -1 btree 0 70 
+pay	integer 2 noindex

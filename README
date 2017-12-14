@@ -1,0 +1,63 @@
+This is the source code for the Opt++ Extensible Optimizer.
+The latest copy is available from
+ <http://www.cs.wisc.edu/~navin/research/download>.
+Documentation can be separately downloaded form the same site.
+
+See the file "copyright" in this directory for the copyright notice.
+
+------------------
+To compile:
+
+	Goto the file Config.make. The first two lines will be as follows:
+
+		BASE = /local.tom/optpls
+		WISH = /s/std/bin/wish
+
+	Change the value of BASE to the pathname of the directory
+	in which you untarred opt++. (Its the directory in which
+	this README file is located.)
+
+	Change the value of WISH to the pathname where "wish"
+	executable resides on your system. "wish" is a windowing
+	shell that comes with the standard "tcl" distribution.
+	This code has been tested with version 7.4 of Tcl.
+	
+	Make sure you have g++ 2.6.2 or better and
+	that it is in your path.
+
+	Now type
+		% make all
+	This should make the optimizer. 
+
+
+---------------------
+To run some examples try the following:
+
+	Change directory to "bin".
+	Run the command
+		% opt 
+n
+Now type the some of the following queries.
+the optimizer should print out an optimized access plan for
+the query. (Of course, since the optimizer is not connected to a
+real database system it does not execute any queries. It just reads
+some dummy catalog information and statistics from a file called
+".catalog" in the same directory.)
+
+Example queries (remember to end a query with a semicolon):
+
+	select name from Cities;
+
+	select name, age from Cities where Cities.mayor.name = "Jose";
+
+	select name, age 
+        from Cities 
+        where Cities.country.continent = "africa";
+
+
+You can use "showplan" to see the access plan produced by the
+optimizer in a nice tree format. Just run
+
+	% opt | showplan
+
+and type in the query followed by a semi-colon.

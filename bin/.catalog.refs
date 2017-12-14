@@ -1,0 +1,21 @@
+3
+emp		2000	100	0	5
+dept		30	500	5	4
+job		70	500	9	3
+
+
+12
+eno     integer 2 btree 1 2000 0000 9999 
+essno   integer	2 btree 0 2000 0000 9999
+dno     ref 1	2 noindex
+jno     ref 2	2 btree 0 70   0000 9999
+comment string -1 noindex
+
+dno	integer 2 btree 1 30   0000 9999
+dname   string -1 btree 0 30
+desc	string -1 noindex
+addr	integer 2 noindex
+
+jno 	integer 2 btree 1 70   0000 9999
+name	string -1 btree 0 70 
+pay	integer 2 noindex

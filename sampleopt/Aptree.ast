@@ -1,0 +1,15 @@
+PTREE:	empty ( )
+	BOOL 
+
+BOOL:	and (BOOL, BOOL)
+	not (BOOL)
+	relop (EXPR, EXPR)
+	range (EXPR, CONST_EXPR, CONST_EXPR)
+
+EXPR:	CONST_EXPR
+	oidref ( )
+	relattr ( )
+	attref ( )
+	f_apply (EXPR, ..., EXPR)
+
+CONST_EXPR: literal ( )

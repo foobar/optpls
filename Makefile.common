@@ -1,0 +1,10 @@
+
+tags:
+	$(TAGS) *.[ch]
+
+depend:
+	$(MAKE_DEPEND_COMMAND)
+
+clean:
+	/bin/rm -rf $(CLEANABLES)
+

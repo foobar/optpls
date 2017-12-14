@@ -1,0 +1,35 @@
+apg.o: apg.c Aalgo.c /s/gcc-2.6.3/sun4m_412/lib/g++-include/iostream.h \
+  /s/gcc-2.6.3/sun4m_412/lib/g++-include/streambuf.h \
+  /s/gcc-2.6.3/sun4m_412/lib/g++-include/libio.h \
+  /s/gcc-2.6.3/sun4m_412/lib/g++-include/_G_config.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/stdlib.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/sys/stdtypes.h \
+  Aalgo.h /local.tom/optplspls/sampleopt/Aopdefs.h \
+  /local.tom/optplspls/sampleopt/Alist.h \
+  /s/gcc-2.6.3/sun4m_412/sparc-sun-sunos4.1.3/include/assert.h \
+  /local.tom/optplspls/sampleopt/Aglob_vars.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/string.h \
+  /local.tom/optplspls/search/Aop.h Ahash.h Aphynode.h \
+  /local.tom/optplspls/search/Aalgo.h \
+  /local.tom/optplspls/search/Alognode.h \
+  /local.tom/optplspls/sampleopt/Aphyprop.h \
+  /local.tom/optplspls/sampleopt/Aattr.h \
+  /local.tom/optplspls/sampleopt/Acat.h \
+  /local.tom/optplspls/sampleopt/Aconsts.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/math.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/floatingpoint.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/sys/ieeefp.h \
+  /local.tom/optplspls/parser/Badt.h /local.tom/optplspls/sampleopt/Aset.h \
+  /local.tom/optplspls/sampleopt/Abitmap.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/limits.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/syslimits.h \
+  /usr/include/limits.h /local.tom/optplspls/sampleopt/Acost.h \
+  /local.tom/optplspls/sampleopt/Aptree.h \
+  /local.tom/optplspls/sampleopt/Arel.h \
+  /local.tom/optplspls/sampleopt/Afunc.h \
+  /local.tom/optplspls/sampleopt/Aseldesc.h Asearch.h \
+  /local.tom/optplspls/search/Aphynode.h \
+  /local.tom/optplspls/sampleopt/Aoptions.h Ahash.c Alognode.h \
+  /local.tom/optplspls/sampleopt/Alogprop.h \
+  /local.tom/optplspls/sampleopt/Apred.h Alognode.c Aop.c Aop.h Aphynode.c \
+  Asearch.c /local.tom/optplspls/search/Ahash.h

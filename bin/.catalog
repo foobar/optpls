@@ -1,0 +1,130 @@
+22
+    Country         		300          3             Y         Y           ext_Country
+      City          		200          3             Y         N           ext_City
+     Capital          		400          3             Y         Y           ext_Capital
+   Information       		400          1             Y         Y           ext_Information
+    Destination     		8            2             Y         N           ----
+    Employee        		250          4             Y         Y           ext_Employee
+      Plant                    1000          3             Y         N           ext_Plant
+    Department        		500          0             Y         Y           ext_Department
+      Job                       400          0             Y         Y           ext_Job
+     Task                       12           2             Y         Y           ext_Task 
+      Hotel                     100          0             Y         N           ----
+     Person			100          1             Y         Y           ext_Person
+      CV            		150          0             Y         N           ----
+     Sale           		16           2             Y         N           ----
+   Continent        		32           0             Y         Y           ext_Continent
+     Date	    		10	     0             N         N           ----
+     string	     		0	     0             N         N           ----
+     void	     		0	     0             N         N           ----
+     float	     		0	     0             N         N           ----
+     integer	     		4	     0             N         N           ----
+     boolean	     		1	     0             N         N           ----
+ Data_Type_Not_Set	     	1	     0             N         N           ----
+
+27
+   Departments        Department    100       Y           N           number               I1               ----
+    Employees          Employee     50000     N           N         spouse.name            I2               ----
+     Persons            Person      10000     Y           N            age                 I3               ----
+     Cities              City       10000     Y           N         mayor.name             I4               ----
+    Continents        Continent     3         N           N             ----               --               ----
+     Countries         Country      100       Y           N             name               I5               ----
+     Tasks             Task         10000     Y           N             time               I9               ----
+  ext_Task     	       Task         10000     N           N             ----               --               ----
+  ext_Job    	       Job          5000      N           N             ----               --               ----
+  ext_Department     Department     1000      N           N             ----               --               ----
+  ext_Person           Person       100000    N           N             name               I6               ----
+  ext_Employee         Employee     200000    Y           N          first_name            I10              ----
+  ext_City              City        20000     N           N             ----               --               ----
+  ext_Plant            Plant        200       N           N             ----               --               ---- 
+  ext_Capital          Capital      160       N           N             ----               --               ----
+  ext_Continent      Continent      7         N           N             ----               --               ----
+  ext_Country         Country       160       Y           N             name               I8               ----
+  ext_Information  Information      1000      N           N             ----               --               ----
+       I1         Data_Type_Not_Set 5         N           Y             ----           Departments           p
+       I2         Data_Type_Not_Set 5000      N           Y             ----            Employees            c
+       I3         Data_Type_Not_Set 200       N           Y             ----             Persons             c
+       I4         Data_Type_Not_Set 5000      N           Y             ----             Cities              sd
+       I5         Data_Type_Not_Set 100       N           Y             ----            Countries            sd
+       I6         Data_Type_Not_Set 2000      N           Y             ----            ext_Person           c
+       I8         Data_Type_Not_Set 160       N           Y             ----            ext_Country          sd
+       I9         Data_Type_Not_Set 1000      N           Y             ----              Tasks              c
+       I10        Data_Type_Not_Set 50        N           Y             ----            ext_Employee         c 
+
+
+75
+      name          Person         string       N       0         Attr  Y     N         ----       Data_Type_Not_Set
+     address	    Person         string       N       0         Attr  N     N         ----       Data_Type_Not_Set
+      age           Person        integer       N       0         Attr  N     N         ----       Data_Type_Not_Set
+     spouse         Person        Person        N       0         Link  N     N         ----       Data_Type_Not_Set
+     print          Person         void         N       0         Attr  N     N         ----       Data_Type_Not_Set
+     self	    Person	 Person         N       0         Attr  Y     N         ----       Data_Type_Not_Set
+     time           Task          integer       N       0         Attr  N     N         ----       Data_Type_Not_Set
+     team_members   Task          Employee      Y      10         Link  N     N         ----       Data_Type_Not_Set
+     employee       Task          Employee      N       0         Link  N     N         ----       Data_Type_Not_Set
+     team_manager   Task          Employee      N       0         Link  Y     N         ----       Data_Type_Not_Set
+      name	    Job           string        N       0         Attr  Y     N         ----       Data_Type_Not_Set
+      wage	    Job           float         N       0         Attr  N     N         ----       Data_Type_Not_Set
+      self	    Job           Job           N       0         Attr  Y     N         ----       Data_Type_Not_Set
+     location       Plant         string        N       0         Attr  Y     N         ----       Data_Type_Not_Set
+      self          Plant         Plant         N       0         Attr  Y     N         ----       Data_Type_Not_Set
+     department     Employee     Department     N       0         Link  N     N         ----       Data_Type_Not_Set
+     cv     	    Employee        CV     	N       0         Link  Y     N         ----       Data_Type_Not_Set
+     sales     	    Employee       Sale     	Y      25         Link  N     N         ----       Data_Type_Not_Set
+     number         Employee      integer       N       0         Attr  Y     N         ----       Data_Type_Not_Set
+      age           Employee      integer       N       0         Attr  N     N         ----       Data_Type_Not_Set
+      job      	    Employee       Job          N       0         Link  N     N         ----       Data_Type_Not_Set
+ job_description    Employee      string        N       0         Attr  N     N         ----       Data_Type_Not_Set
+    last_raise      Employee       Date         N       0         Attr  N     N         ----       Data_Type_Not_Set
+     print          Employee       void         N       0         Attr  N     N         ----       Data_Type_Not_Set
+     self	    Employee     Employee       N       0         Attr  Y     N         ----       Data_Type_Not_Set
+      name          Employee     string         N       0         Attr  Y     N         ----       Data_Type_Not_Set
+   first_name       Employee     string         N       0         Attr  N     N         ----       Data_Type_Not_Set
+     address	    Employee     string         N       0         Attr  N     N         ----       Data_Type_Not_Set
+      age           Employee     integer        N       0         Attr  N     N         ----       Data_Type_Not_Set
+     spouse         Employee      Person        N       0         Link  N     N         ----       Data_Type_Not_Set
+     print          Employee       void         N       0         Attr  N     N         ----       Data_Type_Not_Set
+     name          Department     string        N       0         Attr  Y     N         ----       Data_Type_Not_Set
+     floor         Department    integer        N       0         Attr  N     N         ----       Data_Type_Not_Set
+     number        Department    integer        N       0         Attr  Y     N         ----       Data_Type_Not_Set
+     plant         Department    Plant          N       0         Link  N     N         ----       Data_Type_Not_Set
+     print         Department     void          N       0         Attr  N     N         ----       Data_Type_Not_Set
+     self	   Department	Department      N       0         Attr  Y     N         ----       Data_Type_Not_Set
+    president      Country       Person         N       0         Link  Y     N         ----       Data_Type_Not_Set
+      age          Country       integer        N       0         Attr  N     N         ----       Data_Type_Not_Set
+    continent      Country       string         N       0         Attr  N     N         ----       Data_Type_Not_Set
+     name          Country        string        N       0         Attr  Y     N         ----       Data_Type_Not_Set 
+     capital       Country        Capital       N       0         Link  Y     Y        country         Capital 
+     self	   Country	 Country       	N       0         Attr  Y     N         ----       Data_Type_Not_Set
+    country         City         Country        N       0         Link  N     N         ----       Data_Type_Not_Set
+     name	    City          string        N       0         Attr  Y     N         ----       Data_Type_Not_Set
+      age           City         integer        N       0         Attr  N     N         ----       Data_Type_Not_Set
+     mayor          City         Person         N       0         Link  Y     N         ----       Data_Type_Not_Set
+     self	    City	   City        	N       0         Attr  Y     N         ----       Data_Type_Not_Set
+     info           City        Information     N       0         Link  Y     N         ----       Data_Type_Not_Set
+    country        Capital        Country       N       0         Link  Y     Y        capital         Country 
+     name          Capital        string        N       0         Attr  Y     N         ----       Data_Type_Not_Set
+      age          Capital       integer        N       0         Attr  N     N         ----       Data_Type_Not_Set
+     mayor         Capital       Person         N       0         Link  Y     N         ----       Data_Type_Not_Set
+     self	   Capital        Capital      	N       0         Attr  Y     N         ----       Data_Type_Not_Set
+     info          Capital      Information     N       0         Link  Y     N         ----       Data_Type_Not_Set
+     name          Continent      string        N       0         Attr  Y     N         ----       Data_Type_Not_Set
+     self	   Continent	 Continent     	N       0         Attr  Y     N         ----       Data_Type_Not_Set
+     hotels        Information   Hotel          Y      75         Link  N     N         ----       Data_Type_Not_Set
+     day           Information   string         Y      35         Attr  N     N         ----       Data_Type_Not_Set
+     night         Information   string         Y      25         Attr  N     N         ----       Data_Type_Not_Set
+     self	   Information	Information    	N       0         Attr  Y     N         ----       Data_Type_Not_Set
+     self	   Destination	Destination    	N       0         Attr  Y     N         ----       Data_Type_Not_Set
+     city	   Destination	  City    	N       0         Link  N     N         ----       Data_Type_Not_Set
+     hotel	   Destination	  Hotel    	N       0         Link  N     N         ----       Data_Type_Not_Set
+     self	      CV	  CV    	N       0         Attr  N     N         ----       Data_Type_Not_Set
+     name	      CV	  string    	N       0         Attr  N     N         ----       Data_Type_Not_Set
+     birth_city	      CV	  string    	N       0         Attr  N     N         ----       Data_Type_Not_Set
+     birth_country    CV	  string    	N       0         Attr  N     N         ----       Data_Type_Not_Set
+     self            Sale         Sale          N       0         Attr  Y     N         ----       Data_Type_Not_Set
+     dest            Sale        Destination    N       0         Link  N     N         ----       Data_Type_Not_Set
+     employee        Sale        Employee       N       0         Link  N     N         ----       Data_Type_Not_Set
+     amount          Sale        float          N       0         Attr  N     N         ----       Data_Type_Not_Set
+     name           Hotel        string         N       0         Attr  N     N         ----       Data_Type_Not_Set
+     self           Hotel        Hotel          N       0         Attr  N     N         ----       Data_Type_Not_Set
+     location       Hotel        string         N       0         Attr  N     N         ----       Data_Type_Not_Set

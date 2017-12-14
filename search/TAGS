@@ -1,0 +1,145 @@
+
+Aalgo.c,310
+Aalgo_t::Prune 62,2605
+Aalgo_t::Clones 118,4485
+Aalgo_t::EnforceNthConstraint 158,6066
+Aunaryalgo_t::Clones 193,7118
+Aunaryalgo_t::MakePhyNodes 204,7409
+Aunaryalgo_t::Apply 225,7981
+Aenforcer_t::Apply 250,8820
+Abinalgo_t::Clones 271,9402
+Abinalgo_t::MakePhyNodes 281,9608
+Abinalgo_t::Apply 301,10269
+
+Ahash.c,760
+Ahashnode_t::Ahashnode_t 101,4217
+Ahashnode_t::NewPhyNode 113,4490
+Ahashnode_t::Ahashnode_t 145,5420
+Ahashnode_t::~Ahashnode_t 160,5812
+inline static int Aabs 214,7718
+class HashTable HashTable216,7775
+  int Rehash HashTable::Rehash221,7970
+HashTable::EmptyHashTable 243,8559
+HashTable::HashTable 252,8743
+HashTable::FindMatch 261,8996
+HashTable::FindReplacee 307,10628
+HashTable::Insert 336,11396
+Ahashid_t::InitializeHashTable 347,11573
+Ahashid_t::EmptyHashTable 355,11698
+Ahashid_t::Ahashid_t 361,11808
+Ahashid_t::GetExactMatch 373,12093
+Ahashid_t::Replace 392,12551
+Ahashid_t::Insert 399,12677
+Ahashid_t::GetNextReplacer 426,13567
+void Ahashid_t::Suicide 457,14511
+Ahashid_t::GetReplacee 480,15128
+Ahashid_t::KillReplacee 495,15515
+
+Alognode.c,200
+Alognode_t::~Alognode_t 40,1305
+Alognode_t::Alognode_t 55,1634
+Alognode_t::Alognode_t 70,1916
+Alognode_t::Alognode_t 89,2402
+Alognode_t::DeletePhyNode 104,2620
+Alognode_t::MakePhyNodes 116,2992
+
+Aop.c,157
+Aunaryop_t::Apply 11,182
+Aop_t::Clones 70,2507
+Aunaryop_t::Clones 78,2643
+Abinop_t::DfsNode 89,2963
+Abinop_t::Apply 113,3818
+Abinop_t::Clones 122,4066
+
+Aphynode.c,233
+Aphynode_t::DeletePhyNode 36,1460
+Aphynode_t::~Aphynode_t 44,1583
+Aphynode_t::Aphynode_t 57,1785
+Aphynode_t::Aphynode_t 75,2317
+Aphynode_t::Aphynode_t 92,2718
+Aphynode_t::Aphynode_t 109,3175
+Aphynode_t::IsInteresting 126,3534
+
+Asearch.c,206
+ADeleteTree 12,246
+Asearch_t::NewNode 25,609
+Asearch_t::AddNodeToTree 39,868
+Asearch_t::~Asearch_t 51,1205
+Asearch_t::DeleteLogNode 72,1796
+Asearch_t::ExpandNode 86,2051
+Asearch_t::Optimize 114,2798
+
+Aalgo.h,638
+#define AALGO_H2,16
+class Aalgo_t Aalgo_t40,1044
+  Aalgo_t Aalgo_t::Aalgo_t50,1334
+  char *GetName Aalgo_t::GetName61,1774
+  AalgoNumber GetNumber Aalgo_t::GetNumber62,1812
+  virtual Aphyprop_t *Constraint Aalgo_t::Constraint67,1945
+  virtual void Apply Aalgo_t::Apply86,2852
+class Aunaryalgo_t Aunaryalgo_t115,4333
+  Aunaryalgo_t Aunaryalgo_t::Aunaryalgo_t118,4388
+  int Arity Aunaryalgo_t::Arity121,4499
+class Aenforcer_t Aenforcer_t137,5091
+  Aenforcer_t Aenforcer_t::Aenforcer_t140,5150
+class Abinalgo_t Abinalgo_t156,5742
+  Abinalgo_t Abinalgo_t::Abinalgo_t159,5795
+  int Arity Abinalgo_t::Arity163,5906
+
+Ahash.h,101
+#define AHASHTABLE_H2,21
+class Ahashnode_t Ahashnode_t66,2537
+class Ahashid_t Ahashid_t117,4393
+
+Alognode.h,691
+#define ALOGNODE_H2,19
+class Alognode_t Alognode_t38,1228
+  Aop_t *GetOp Alognode_t::GetOp65,2181
+  Alogprop_t *GetLogProps Alognode_t::GetLogProps66,2216
+  int IsDone Alognode_t::IsDone67,2268
+  Alist_t<Alognode_t> &Children Alognode_t::Children69,2304
+  void AddChild Alognode_t::AddChild70,2362
+  void DeleteChild Alognode_t::DeleteChild71,2431
+  Alist_t<Aphynode_t> &GetPhyNodes Alognode_t::GetPhyNodes73,2507
+  int NumPhyNodes Alognode_t::NumPhyNodes74,2568
+  void AddPhyNode Alognode_t::AddPhyNode75,2622
+  Alognode_t *Input Alognode_t::Input80,2731
+  Alognode_t *LeftInput Alognode_t::LeftInput82,2805
+  Alognode_t *RightInput Alognode_t::RightInput83,2875
+
+Aop.h,610
+#define AOP_H2,14
+class Aop_t Aop_t31,863
+  virtual ~Aop_t Aop_t::~Aop_t46,1334
+  Aop_t Aop_t::Aop_t47,1361
+  char *GetName Aop_t::GetName57,1738
+  int GetNumber Aop_t::GetNumber58,1776
+  Alist_t<Aalgo_t> GetListOfAlgorithms Aop_t::GetListOfAlgorithms59,1816
+class Aunaryop_t Aunaryop_t86,2796
+  virtual ~Aunaryop_t Aunaryop_t::~Aunaryop_t89,2847
+  Aunaryop_t Aunaryop_t::Aunaryop_t90,2879
+  int Arity Aunaryop_t::Arity93,2967
+class Abinop_t Abinop_t108,3530
+  virtual ~Abinop_t Abinop_t::~Abinop_t114,3671
+  Abinop_t Abinop_t::Abinop_t115,3701
+  int Arity Abinop_t::Arity118,3787
+
+Aphynode.h,594
+#define APHYNODE_H2,19
+class Aphynode_t Aphynode_t22,644
+  Aalgo_t *GetAlgo Aphynode_t::GetAlgo48,1607
+  int GetNumInputs Aphynode_t::GetNumInputs49,1653
+  void SetPhyProps Aphynode_t::SetPhyProps50,1709
+  Aphynode_t *Input Aphynode_t::Input54,1769
+  Aphynode_t *LeftInput Aphynode_t::LeftInput55,1842
+  Aphynode_t *RightInput Aphynode_t::RightInput56,1911
+  Aphyprop_t *GetPhyProps Aphynode_t::GetPhyProps58,1984
+  Alogprop_t *GetLogProps Aphynode_t::GetLogProps61,2044
+  Alognode_t *GetParent Aphynode_t::GetParent64,2118
+  int SubOptimal Aphynode_t::SubOptimal67,2233
+
+Asearch.h,160
+#define ASEARCH_H2,18
+#define ADEBUG 13,163
+class Asearch_t Asearch_t15,211
+  Alist_t<Alognode_t> &GetListOfRootNodes Asearch_t::GetListOfRootNodes35,748

@@ -1,0 +1,255 @@
+%{	
+
+void yyerror (char *);
+extern int yylex (void);
+
+%}
+
+%token t_integer t_real t_string
+%token t_identifier 
+%token t_oid
+%token t_create t_drop t_load t_open t_close t_db t_table 
+%token t_clustered t_index t_on t_delete t_insert t_into
+%token t_as t_values t_update t_set 
+%token t_select t_from t_where t_group t_order t_by t_asc t_dsc
+%token t_intersect t_minus t_union
+%token t_all t_distinct
+%token t_null t_is t_between 
+%token t_overlaps t_equal t_not_equal 
+%token t_less t_less_equal t_greater t_greater_equal
+%token t_lparen t_rparen t_lbracket t_rbracket
+%token t_comma t_arrow
+
+%left t_and t_or 
+%left t_dot
+%left t_not
+
+%left t_plus t_minus
+%left t_star t_div
+%left t_unary_minus
+
+
+%%
+
+Command		:	Utility
+		|	Update
+		|	Query
+		|	
+		;
+
+Utility		:	t_create OptClustered t_index Ident t_on Ident
+			t_lparen IdxAttrList t_rparen
+		|	t_drop t_index Ident
+		
+		|	t_create t_table Ident t_lparen ColTypeList t_rparen
+		|	t_load t_table Ident t_from FilenameList
+		|	t_drop t_table Ident
+
+		|	t_create t_db Ident
+		|	t_drop t_db Ident
+		|	t_open t_db Ident
+		|	t_close t_db Ident
+		;
+
+OptClustered	:	t_clustered
+		|	
+		;
+
+Update		:	t_delete t_from Ident WhereClause
+		|	t_insert t_into Ident OptColList t_values ValueList
+		|	t_update Ident t_set AttrUpdateList WhereClause
+		|	t_insert t_into Ident t_lparen ColList t_rparen Query
+		|	t_insert t_into Ident Query
+		;
+
+AttrUpdateList	:	AttrUpdate
+		|	AttrUpdateList t_comma AttrUpdate
+		;
+
+AttrUpdate	:	Col t_equal Expr
+		|	Col t_equal t_null
+		;
+
+Query		:	SelectClause FromClause WhereClause
+			GroupBy OrderBy
+		|	t_lparen Query t_rparen SetOp t_lparen Query t_rparen
+			SetOrderBy
+		;
+
+SetOp		:	t_intersect
+		|	t_minus
+		|	t_union
+		;
+
+SelectClause	:	t_select t_star
+		|	t_select AllDist ExprList
+		;
+
+AllDist		:	
+		|	t_all
+		|	t_distinct
+		;
+
+ExprList	:	Expr
+		|	ExprList t_comma Expr
+		;
+
+FromClause	:	t_from RelNameList
+		;
+
+RelNameList	:	RelName
+		|	RelNameList t_comma RelName
+		;
+
+RelName		:	Ident
+		|	Ident Ident
+		;
+
+WhereClause	:	
+		|	t_where Predicate
+		;
+
+Predicate	:	Expr
+		|	Expr Relop Expr
+		|	OidRef t_equal t_string
+		|	Expr t_between ConstExpr t_and ConstExpr
+		|	Expr t_not t_between ConstExpr t_and ConstExpr
+		|	t_not Predicate
+		|	Predicate t_and Predicate
+		|	Predicate t_or Predicate
+		|	t_lparen Predicate t_rparen
+		;
+
+Relop		:	t_equal
+		|	t_not_equal
+		|	t_less
+		|	t_less_equal
+		|	t_greater
+		|	t_greater_equal
+		|	t_overlaps
+		|	t_not t_overlaps
+		;
+
+Expr		:	t_plus Expr  %prec t_unary_minus
+		|	t_minus Expr %prec t_unary_minus
+		|	Expr t_plus Expr
+		| 	Expr t_minus Expr
+		|	Expr t_star Expr
+		|	Expr t_div Expr
+		|	Literal
+		|	Ident
+			/* attribute name or relation name */
+		|	Expr t_dot Ident
+			/* rel.attr OR attr.ref OR object.ref */
+		|	Expr t_dot Ident t_lparen OptArgList t_rparen
+			/* object.func (args) */
+		|	Ident t_lparen OptArgList t_rparen
+		;
+
+Attref		:	Ident
+		|	Attref t_dot Ident
+		;
+
+OptArgList	:	
+		|	ArgList
+		;
+
+ArgList		:	Expr
+		|	ArgList t_comma Expr
+		;
+
+OidRef		:	t_oid
+		|	Ident t_arrow t_oid
+		;
+
+Literal		:	t_integer
+		|	t_real
+		|	t_string
+		;
+
+ConstExpr	:	Expr
+		;
+
+GroupBy		:	
+		|	t_group t_by AttrefList
+		;
+
+AttrefList	:	Attref
+		|	AttrefList t_comma Attref
+		;
+
+OrderBy		:	
+		|	t_order t_by SortOrderList
+		;
+
+SortOrderList	:	SortOrder
+		|	SortOrderList t_comma SortOrder
+		;
+
+SortOrder	:	Attref OptAscDsc
+		;
+
+OptAscDsc	:	
+		|	t_asc
+		|	t_dsc
+		;
+
+SetOrderBy	:	
+		|	t_order t_by IntegerList
+		;
+
+IntegerList	:	t_integer
+		|	IntegerList t_integer
+		;
+
+OptColList	:	
+		|	t_lbracket ColList t_rbracket
+			/* these should actually be l_paren and r_paren
+			   but that would meant that the language is not 
+			   LL(1) andt i dont have the enthusiasm to waste 
+			   time over this issue */
+		;
+
+ColList		:	Col
+		|	ColList t_comma Col
+		;
+
+Col		:	Ident
+		|	t_integer
+		;
+
+FilenameList	:	Filename
+		|	FilenameList t_comma Filename
+		;
+
+Filename	:	Ident
+		|	t_string
+		;
+
+Ident		:	t_identifier
+		;
+
+IdxAttrList	:	IdxAttref
+		|	IdxAttrList t_comma IdxAttref
+		;
+
+IdxAttref	:	Col OptAscDsc
+		;
+
+ColTypeList	:	ColType
+		|	ColTypeList t_comma ColType
+		;
+
+ColType		:	Ident Type
+		;
+
+Type		:	Ident
+		;
+
+ValueList	: 	ConstExpr
+		|	ValueList t_comma ConstExpr
+		;
+
+%%		
+
+void yyerror (char *s) {return;}

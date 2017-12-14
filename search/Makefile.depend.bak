@@ -1,0 +1,25 @@
+# DO NOT DELETE THIS LINE -- make depend depends on it.
+
+apg.o: Aalgo.c /usr/psup/gcc/lib/g++-include/iostream.h
+apg.o: /usr/psup/gcc/lib/g++-include/streambuf.h
+apg.o: /usr/psup/gcc/lib/g++-include/libio.h /usr/include/stdlib.h
+apg.o: /usr/include/ansi_compat.h Aalgo.h
+apg.o: /var/home/navin/acad/optimizer/opt/Aopdefs.h
+apg.o: /var/home/navin/acad/optimizer/opt/Alist.h /usr/include/assert.h
+apg.o: /var/home/navin/acad/optimizer/opt/Aglob_vars.h /usr/include/string.h
+apg.o: Aop.h Ahash.h Aphynode.h Alognode.h
+apg.o: /var/home/navin/acad/optimizer/opt/Aphyprop.h
+apg.o: /var/home/navin/acad/optimizer/opt/Aattr.h
+apg.o: /var/home/navin/acad/optimizer/opt/Acat.h
+apg.o: /var/home/navin/acad/optimizer/opt/Aconsts.h /usr/include/math.h
+apg.o: /var/home/navin/acad/optimizer/query/Badt.h
+apg.o: /var/home/navin/acad/optimizer/opt/Aset.h
+apg.o: /var/home/navin/acad/optimizer/opt/Abitmap.h /usr/include/limits.h
+apg.o: /var/home/navin/acad/optimizer/opt/Acost.h Asearch.h Ahash.c
+apg.o: /var/home/navin/acad/optimizer/opt/Alogprop.h
+apg.o: /var/home/navin/acad/optimizer/opt/Arel.h
+apg.o: /var/home/navin/acad/optimizer/opt/Apred.h
+apg.o: /var/home/navin/acad/optimizer/opt/Aptree.h /usr/include/stdarg.h
+apg.o: /var/home/navin/acad/optimizer/opt/Afunc.h
+apg.o: /var/home/navin/acad/optimizer/opt/Aseldesc.h Alognode.c Aop.c
+apg.o: Aphynode.c Asearch.c /var/home/navin/acad/optimizer/opt/Aoptions.h

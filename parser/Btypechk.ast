@@ -1,0 +1,132 @@
+Command		:	utility (Utility)
+		|	update (Update)
+		| 	query (Query)
+		|	empty ( )
+
+
+Utility		: 	create_idx (Ident Ident IdxAttrList)
+		|	create_clus_idx (Ident Ident IdxAttrList)
+		|	drop_idx (Ident)
+
+		|	create_table (Ident ColTypenameList)
+		|	load_table (Ident FilenameList)
+		|	drop_table (ident)
+
+		|	create_db (Ident)
+		|	drop_db (Ident)
+		|	open_db (Ident)
+		|	close_db (Ident)
+
+Update		:	delete_stmt (Ident WhereClause)
+		|	insert_values (Ident OptColList ValueList)
+		|	insert_query (Ident OptColList Query)
+		
+		|	update_stmt (Ident AttrUpdateList WhereClause)
+
+AttrUpdateList	:	attr_update_list (AttrUpdate)
+
+AttrUpdate	:	attr_assign (Col Expr)
+		|	attr_null (Col)
+
+Query		:	query_stmt (SelectClause FromClause WhereClause
+				    GroupBy OrderBy)
+		|	intersect (QueryStmt QueryStmt SetOrderByClause)
+		|	minus (QueryStmt QueryStmt SetOrderBy)
+		|	union (QueryStmt QueryStmt SetOrderBy)
+
+SelectClause	:	select_star ( )
+		|	select_all  (ExprList)
+		|	select_dist (ExprList)
+
+ExprList	:	expr_list (Expr)
+
+FromClause	:	from_list (RelName)+
+
+RelName		:	rel_var (Ident Ident)
+
+WhereClause	:	empty ( )
+		|	predicate (Predicate)
+
+Predicate	:	equal (Expr Expr)
+		|	not_equal (Expr Expr)
+		|	less (Expr Expr)
+		|	less_equal (Expr Expr)
+		|	greater (Expr Expr)
+		|	greater_equal (Expr Expr)
+		|	overlaps (Expr Expr)
+		|	not_overlaps (Expr Expr)
+		|	oid_ref (OidRef String)
+		|	bool_expr (Expr)
+		|	between (Expr ConstExpr ConstExpr)	
+		|	not_between (Expr ConstExpr ConstExpr)	
+		|	not (Predicate)
+		|	and (Predicate Predicate)
+		|	or (Predicate Predicate)
+
+Expr		:	unary_plus (Expr)
+		|	unary_minus (Expr)
+		|	plus (Expr Expr)
+		|	minus (Expr Expr)
+		|	times (Expr Expr)
+		|	div (Expr Expr)
+		|	literal (Literal)
+		|	attref (Relref Ident)
+		|	reference (Expr Ident)
+		|	invoke_method (Expr Ident ArgList)
+		|	func_call (Ident ArgList)
+
+Relref		:	relref ( )
+		| 	reference (Relref Ident)
+		;
+
+Attref		: 	attref (Relref Ident)
+
+OidRef		:	oid ( )
+		|	rel_oid (Ident)
+
+ArgList		:	arg_list (Expr)
+
+Literal		:	integer ( )
+		|	real ( )
+		|	string ( )
+
+ConstExpr	:	const_expr (Expr)
+
+Integer		:	integer ( )
+
+String		:	string ( )
+
+GroupBy		:	groupby_list (Attref)
+
+OrderBy		:	orderby_list (SortOrder)
+
+SortOrder	:	asc (Attref)
+		|	dsc (Attref)
+
+SetOrderBy	:	set_order_by_list (Integer)
+
+OptColList	:	col_list (Col)
+
+Col		:	col_name (Ident)
+		|	col_number (Integer)
+
+FilenameList	:	filename_list (Filename)
+
+Filename	:	filename_id (Ident)
+		|	filename_str (String)
+
+Ident		:	identifier ( )
+
+IdxAttrList	:	idx_attr_list (IdxAttref)
+
+IdxAttref	:	asc_idx_attref (Col)
+		|	dsc_idx_attref (Col)
+
+
+ColTypenameList	:	col_typename_list (ColTypename)
+
+ColTypename	:	col_typename (Ident Typename)
+
+Typename	:	typename (Ident)
+
+ValueList	:	value_list (ConstExpr)

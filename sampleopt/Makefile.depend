@@ -1,0 +1,92 @@
+opt.o: opt.c Aattr.c Aattr.h /local.tom/optplspls/sampleopt/Aglob_vars.h \
+  /local.tom/optplspls/sampleopt/Acat.h \
+  /s/gcc-2.6.3/sun4m_412/lib/g++-include/iostream.h \
+  /s/gcc-2.6.3/sun4m_412/lib/g++-include/streambuf.h \
+  /s/gcc-2.6.3/sun4m_412/lib/g++-include/libio.h \
+  /s/gcc-2.6.3/sun4m_412/lib/g++-include/_G_config.h \
+  /s/gcc-2.6.3/sun4m_412/sparc-sun-sunos4.1.3/include/assert.h \
+  /local.tom/optplspls/sampleopt/Aconsts.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/math.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/floatingpoint.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/sys/ieeefp.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/string.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/sys/stdtypes.h \
+  /local.tom/optplspls/parser/Badt.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/stdlib.h \
+  /local.tom/optplspls/sampleopt/Aset.h \
+  /local.tom/optplspls/sampleopt/Abitmap.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/limits.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/syslimits.h \
+  /usr/include/limits.h Aquery.h /local.tom/optplspls/sampleopt/Alist.h \
+  /local.tom/optplspls/sampleopt/Aattr.h \
+  /local.tom/optplspls/sampleopt/Arel.h \
+  /local.tom/optplspls/sampleopt/Apred.h \
+  /local.tom/optplspls/sampleopt/Aptree.h \
+  /local.tom/optplspls/sampleopt/Afunc.h \
+  /local.tom/optplspls/sampleopt/Aseldesc.h Abitmap.c Abitmap.h Acat.c Acat.h \
+  Arel.h Acost.c /local.tom/optplspls/search/Aphynode.h \
+  /local.tom/optplspls/search/Aalgo.h \
+  /local.tom/optplspls/sampleopt/Aopdefs.h \
+  /local.tom/optplspls/search/Aop.h /local.tom/optplspls/search/Alognode.h \
+  /local.tom/optplspls/sampleopt/Acost.h \
+  /local.tom/optplspls/sampleopt/Aopinc.h \
+  /local.tom/optplspls/sampleopt/Aopalgos.h \
+  /local.tom/optplspls/sampleopt/Alogprop.h \
+  /local.tom/optplspls/sampleopt/Aoptions.h \
+  /local.tom/optplspls/sampleopt/Aphyprop.h Afunc.c \
+  /local.tom/optplspls/sampleopt/Aquery.h Afunc.h Aptree.h Alist.c Alogprop.c \
+  Aopalgos.c /local.tom/optplspls/search/Asearch.h Aopdefs.c \
+  /s/gcc-2.6.3/sun4m_412/lib/g++-include/fstream.h Aphyprop.c Apred.c Apred.h \
+  Aoptions.h Aptree.c Aquery.c Aconsts.h Arel.c Aselectivity.c Aset.c \
+  Ausersearch.c
+main.o: main.c Acat.h /s/gcc-2.6.3/sun4m_412/lib/g++-include/iostream.h \
+  /s/gcc-2.6.3/sun4m_412/lib/g++-include/streambuf.h \
+  /s/gcc-2.6.3/sun4m_412/lib/g++-include/libio.h \
+  /s/gcc-2.6.3/sun4m_412/lib/g++-include/_G_config.h \
+  /s/gcc-2.6.3/sun4m_412/sparc-sun-sunos4.1.3/include/assert.h \
+  /local.tom/optplspls/sampleopt/Aconsts.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/math.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/floatingpoint.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/sys/ieeefp.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/string.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/sys/stdtypes.h \
+  /local.tom/optplspls/parser/Badt.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/stdlib.h \
+  Aquery.h /local.tom/optplspls/sampleopt/Aset.h \
+  /local.tom/optplspls/sampleopt/Abitmap.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/limits.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/syslimits.h \
+  /usr/include/limits.h /local.tom/optplspls/sampleopt/Aglob_vars.h \
+  /local.tom/optplspls/sampleopt/Alist.h \
+  /local.tom/optplspls/sampleopt/Aattr.h \
+  /local.tom/optplspls/sampleopt/Acat.h \
+  /local.tom/optplspls/sampleopt/Arel.h \
+  /local.tom/optplspls/sampleopt/Apred.h \
+  /local.tom/optplspls/sampleopt/Aptree.h \
+  /local.tom/optplspls/sampleopt/Afunc.h \
+  /local.tom/optplspls/sampleopt/Aseldesc.h Aphyprop.h \
+  /local.tom/optplspls/sampleopt/Aopdefs.h \
+  /local.tom/optplspls/sampleopt/Acost.h \
+  /local.tom/optplspls/sampleopt/Aoptions.h \
+  /local.tom/optplspls/sampleopt/Atimer.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/sys/time.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/time.h \
+  /usr/include/sys/resource.h \
+  /s/gcc-2.6.3/sun4m_412/lib/g++-include/iomanip.h \
+  /local.tom/optplspls/search/Asearch.h /local.tom/optplspls/search/Aop.h \
+  /local.tom/optplspls/search/Alognode.h \
+  /local.tom/optplspls/search/Aphynode.h \
+  /local.tom/optplspls/search/Aalgo.h /local.tom/optplspls/search/Ahash.h \
+  /s/gcc-2.6.3/sun4m_412/lib/g++-include/fstream.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/stdio.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/stdarg.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/va-sparc.h \
+  /local.tom/optplspls/parser/Bbogus.h \
+  /local.tom/optplspls/sampleopt/Aquery.h \
+  /s/gcc-2.6.3/sun4m_412/lib/g++-include/strstream.h \
+  /s/gcc-2.6.3/sun4m_412/lib/g++-include/strfile.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/sys/types.h \
+  /usr/include/sys/sysmacros.h \
+  /s/gcc-2.6.3/sun4m_412/lib/gcc-lib/sparc-sun-sunos4.1.3/2.6.3/include/unistd.h \
+  /local.tom/optplspls/parser/Bparsetree.h \
+  /local.tom/optplspls/parser/Bopcodes.h

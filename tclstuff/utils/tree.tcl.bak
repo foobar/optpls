@@ -1,0 +1,302 @@
+class tree {
+    data value
+    data nchild
+    data children
+    data nodenum
+    data bboxnode
+    data bboxtree
+    method child
+    method maxval
+    method drawnode
+    method drawtree
+    method movenode
+    method movetree
+    method tagnode
+    method tagtree
+    method drawlines
+    method setnodenums
+    method readnode
+    method readtree
+    method foreachchild
+    method infer_numchild
+} 
+
+# hack for reading binary trees in preorder
+set last_trees {} 
+
+proc pop_last_tree {} {
+    global last_trees
+    set lastelnum [expr [llength $last_trees] - 1]
+    set lastel [lindex $last_trees $lastelnum]
+    set last_trees [lreplace $last_trees $lastelnum $lastelnum]
+    return $lastel
+}
+
+proc push_last_tree {the_tree} {
+    global last_trees
+    lappend last_trees $the_tree
+}
+
+
+
+# constants
+set tree_xskip 10
+set tree_yskip 40
+
+# the constructor
+proc tree.construct {this {val 0} {args {}}} {
+    $this.value $val
+    $this.nchild [llength $args]
+    $this.children $args
+}
+
+# get the nth child of a tree
+proc tree.child {this n} {
+    return [lindex [$this.children] $n]
+}
+
+# evaluate body for each child of this node
+# in "body" $i can be used to refer to child number
+# and $thechild can be used to refer to the child
+proc tree.foreachchild {this body} {
+    uplevel "set fec_numchild [$this.nchild]"
+    set forstart {set i 0}
+    set fortest {$i < $fec_numchild}
+    set fornext {incr i}
+    set cmd "for \{$forstart\} \{$fortest\} \{$fornext\} \{ \
+	    set thechild \[\$this.child \$i\]; $body\}"
+    uplevel $cmd
+}
+
+# get the maximum value in the tree, assuming the values are numeric
+proc tree.maxval {this} {
+    set maxsofar [$this.value]
+
+    $this.foreachchild {
+	set child_max [$thechild.maxval]
+	if {$maxsofar < $child_max} {set maxsofar $child_max}
+    }
+
+    return $maxsofar
+}
+
+# set the node numbers using a dfs traversal of the tree
+proc tree.setnodenums {this {n 0}} {
+    $this.nodenum $n
+    $this.foreachchild {set n [$thechild.setnodenums [expr $n + 1]]}
+    return $n
+}
+
+proc tree.tagnode {this} {
+    return node[$this.nodenum]
+}
+
+proc tree.tagtree {this} {
+    return tree[$this.nodenum]
+}
+
+proc tree.update_bboxes {this canvasname} {
+    $this.bboxnode [$canvasname bbox [$this.tagnode]]
+    $this.bboxtree [$canvasname bbox [$this.tagtree]]
+}
+
+proc tree.movenode {this canvasname movex movey} {
+    # move all items associated with this node
+    $canvasname move [$this.tagnode] $movex $movey
+
+    # set the bbox information properly
+    $this.update_bboxes $canvasname
+}
+
+proc tree.movetree {this canvasname movex movey} {
+    # move all items associated with this tree
+    $canvasname move [$this.tagtree] $movex $movey
+
+    # set the bbox information properly
+    $this.update_bboxes $canvasname
+}
+
+proc tree.drawnode {this canvasname topx topy parenttags} {
+    set textobj [$canvasname create text $topx $topy \
+	    -anchor center -justify center -text [$this.value] \
+	    -tags $parenttags]
+    $canvasname addtag [$this.tagnode] withtag $textobj
+    $canvasname addtag [$this.tagtree] withtag $textobj
+
+    set textbbox [$canvasname bbox $textobj]
+    set tlx [lindex $textbbox 0]
+    set tly [lindex $textbbox 1]
+    set brx [lindex $textbbox 2]
+    set bry [lindex $textbbox 3]
+    set boxobj [$canvasname create rectangle \
+	    $tlx $tly $brx $bry -tags $parenttags]
+    $canvasname addtag [$this.tagnode] withtag $boxobj
+    $canvasname addtag [$this.tagtree] withtag $boxobj
+
+    set movex [expr $topx - $tlx]
+    set movey [expr $topy - $tly]
+    
+    $this.movenode $canvasname $movex $movey
+    $this.bboxnode [$canvasname bbox $boxobj]
+    return [$this.bboxnode]
+}
+
+proc tree.drawtree {this canvasname topx topy {tags {}}} {
+    set topx [$canvasname canvasx $topx]
+    set topy [$canvasname canvasy $topy]
+
+    global tree_xskip tree_yskip
+    $this.drawnode $canvasname $topx $topy $tags
+    
+    set tags [linsert $tags 0 [$this.tagtree]]
+
+    set bottomy [lindex [$this.bboxnode] 3]
+    set childtopy [expr $bottomy + $tree_yskip]
+    set childtopx [expr $topx]
+    set numchild [$this.nchild]
+    set leftmost $topx
+    set rightmost ""
+
+    $this.foreachchild {
+	$thechild.drawtree $canvasname $childtopx $childtopy $tags
+	set rightmost [lindex [$thechild.bboxtree] 2]
+	set childtopx [expr $rightmost + $tree_xskip]
+    }
+
+    if {$numchild > 0} {
+	set childrenmid [expr ( $leftmost + $rightmost ) / 2]
+	set rootbbox [$this.bboxnode]
+	set rootmid [expr ( [lindex $rootbbox 0] + [lindex $rootbbox 2] ) / 2]
+	set movex [expr $childrenmid - $rootmid]
+	$this.movenode $canvasname $movex 0
+
+	$this.drawlines $canvasname $tags
+    }
+
+    $this.update_bboxes $canvasname
+}
+
+proc tree.drawlines {this canvasname tags} {
+    global tree_yskip
+    set rootbbox [$this.bboxnode]
+    set linetopx [expr ( [lindex $rootbbox 0] + [lindex $rootbbox 2] ) / 2]
+    set linetopy [lindex $rootbbox 3]
+    set lineboty [expr $linetopy + $tree_yskip]
+
+    $this.foreachchild {
+	set childbbox [$thechild.bboxnode]
+	set linebotx \
+		[expr ([lindex $childbbox 0] + [lindex $childbbox 2]) / 2]
+	$canvasname create line $linetopx $linetopy $linebotx $lineboty \
+		-tags $tags
+    }
+}
+	    
+
+proc tree.readnode {this fileid} {
+    gets $fileid operator
+    set operator [string trim $operator]
+    if {$operator == "output"} {
+	return 0
+    } else {
+	gets $fileid argument
+	set argument [string trim $argument]
+	gets $fileid empty_line
+	$this.value [format "%s\n%s" $operator $argument]
+	return 1
+    }
+}
+
+proc tree.readtree {this fileid} {
+    # this tree should not have any children
+    assert {[$this.nchild] == 0}
+
+    # read information for this node
+    $this.readnode $fileid
+
+    # read the number of children
+    gets $fileid numchild
+    $this.nchild $numchild
+
+    set childlist {}
+    for {set i 0} {$i < $numchild} {incr i} {
+ 	lappend childlist [new tree]
+    }
+    $this.children $childlist
+
+    $this.foreachchild {$thechild.readtree $fileid}
+}
+
+proc read_preorder_tree {fileid} {
+    set tnode [new tree]
+    set returncode [$tnode.readnode $fileid]
+
+    while {$returncode != 0} {
+	set numchild $tnode.infer_numchild
+	$tnode.nchild $numchild
+
+	# allocate the children
+	set childlist {}
+	if {$numchild == 1} {
+	    lappend childlist [pop_last_tree]
+	} elseif {$numchild == 2} {
+	    set child2 [pop_last_tree]
+	    set child1 [pop_last_tree]
+	    lappend childlist $child1
+	    lappend childlist $child2
+	}
+	$tnode.children $childlist
+	push_last_tree $tnode
+
+	set returncode [$tnode.readnode $fileid]
+    }
+
+    return [pop_last_tree]
+}
+	
+
+proc tree.readtree {this fileid} {
+    # this tree should not have any children
+    assert {[$this.nchild] == 0}
+
+    # read information for this node
+    $this.readnode $fileid
+
+    # read the number of children
+    gets $fileid numchild
+    
+
+    set childlist {}
+    for {set i 0} {$i < $numchild} {incr i} {
+    	lappend childlist [new tree]
+    }
+    $this.children $childlist
+
+    $this.foreachchild {$thechild.readtree $fileid}
+}
+
+
+proc tree.infer_numchild {this} {
+    set the_value [$this.value]
+    if {$the_value == "filescan"} {
+	return 0
+    } elseif {$the_value == "assembly"} {
+	return 1
+    } elseif {$the_value == "filter"} {
+	return 1
+    } elseif {$the_value == "indexscan"} {
+	return 1
+    } elseif {$the_value == "hh_join"} {
+	return 2
+    } elseif {$the_value == "hhptr_join"} {
+	return 2
+    } elseif {$the_value == "unnestalgo"} {
+	return 1
+    } elseif {$the_value == "outputalgo"} {
+	return 1
+    } else {
+	error "unknown algorithm type"
+    }
+}
+
+proc provide.tree {} {}

@@ -1,0 +1,67 @@
+set auto_path [linsert $auto_path 0 $optplsdir/tclstuff/utils]
+useclass tree
+
+####################################################################
+#                          The Canvas
+####################################################################
+
+frame .grapher	 			 ;# main windown
+
+#frame .grapher.status -bd 2 -relief raised
+#label .grapher.status.label -text "Using File:" 
+#label .grapher.status.filename -textvariable saveFileName
+
+canvas .grapher.c \
+	-yscrollcommand ".grapher.vscroll set" \
+	-xscrollcommand ".grapher.hscroll set" \
+	-scrollregion {0 0 50c 50c} -confine 0 \
+	-relief raised -bd 4 -height 20c -width 20c
+scrollbar .grapher.vscroll -command ".grapher.c yview"
+scrollbar .grapher.hscroll -orient horizontal -command ".grapher.c xview"
+					 ;# Vertical and horizontal
+					 ;# scrolling. Note the use
+					 ;# of the -scrollregion and -confine
+					 ;# options to make this work nicely
+
+#pack .grapher.status.label .grapher.status.filename \
+#	-side left -padx 1m 
+
+#pack .grapher.status -side top -fill x 
+pack .grapher.hscroll -side bottom -fill x
+pack .grapher.vscroll -side right -fill y
+pack .grapher.c -side left -expand 1 -fill both
+pack .grapher -expand 1 -fill both
+					 ;# the -expand 1 -fill both
+					 ;# are there so the windows
+					 ;# adjust their size properly
+					 ;# when the window is resized
+
+
+####################################################################
+#                Interaction with the Window Manager
+####################################################################
+
+wm minsize . 1 1			 ;# this is so that the window
+					 ;# can be resized by twm
+wm protocol . WM_DELETE_WINDOW {exit}	 ;# exit gracefully
+wm geometry . +10-40			 ;# specify the geometry (duh!)
+wm title . "ShowPlan Version 0.0"	 ;# title for the window
+
+####################################################################
+#                          The main program
+####################################################################
+
+#main program
+
+focus .grapher.c                         ;# need the focus here for the
+					 ;# keyboard commands (like "q")
+
+set infile stdin
+# set infile [open "tree.pre"]
+set thetree [read_preorder_tree $infile]
+# tree thetree;
+# $thetree.readtree $infile
+$thetree.setnodenums
+$thetree.drawtree .grapher.c 4c 4c {}
+
+
